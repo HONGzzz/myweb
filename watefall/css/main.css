@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#main {
+    -webkit-column-break-inside: avoid; /* Chrome, Safari, Opera */
+	page-break-inside: avoid; /* Firefox */
+	break-inside: avoid; /* IE 10+ */
+    -webkit-column-width: 202px;
+    -moz-column-width: 202px;
+    -o-column-width: 202px;
+    -ms-column-width: 202px;
+}
+
+.box {
+    padding: 15px 0 0 15px;
+}
+
+.pic {
+    width: 165px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ccc;
+}
+
+.pic img {
+    width: 165px;
+    height: auto;
+}
