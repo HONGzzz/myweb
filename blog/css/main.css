@@ -1,3 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.sub-heading{
+    font-size:18px; 
+}
 nav {
     background: #ccc;
     height: 50px;
@@ -5,13 +12,11 @@ nav {
 
 #banner {
     background: #777;
-    height: 700px;
+    height: 650px;
 }
 
 nav ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
     float: right;
 }
 
@@ -53,7 +58,8 @@ button {
 }
 
 #banner .inner .more {
-    margin-top: 250px;
+    font-size: 18px;
+    margin-top: 180px;
 }
 
 #banner .inner .sub-heading {
@@ -74,4 +80,70 @@ nav .logo {
 .logo a {
     text-decoration: none;
     color: white;
+}
+
+.hr {
+    width: 100%;
+    margin: 0 auto;
+    height: 2px;
+    margin: 20px auto;
+}
+
+.icon-group{
+    margin: 70px 20px 0 20px;
+}
+.one {
+    text-align: center;
+    color: #fff;
+    background: #089D80;
+    padding: 100px 0;
+}
+
+.one .wrapper {
+    max-width: 1080px;
+    margin: 0 auto;
+}
+
+.one .hr {
+    background:#078494;
+    width: 60%;
+}
+
+.one .icon-group .icon{
+    display: inline-block;
+    height: 80px;
+    width: 80px;
+    transform: rotate(45deg);
+    background: #0D6F7C;
+    margin: 20px;
+    line-height: 80px;
+}
+
+.two .img-section {
+    width: 45%;
+}
+
+.two .img-section img {
+    width: 100%;
+}
+
+.two .text-section {
+    box-sizing: border-box;
+    padding: 40px 0 0 40px;
+    width: 55%;
+    font-size: 18px;
+}
+
+.two .text-section h2 {
+    text-align: center;
+    margin: 40px; 
+}
+.article-preview > div {
+    float: left;
+}
+
+.article-preview::after {
+    content: '';
+    display: block;
+    clear: both;
 }
