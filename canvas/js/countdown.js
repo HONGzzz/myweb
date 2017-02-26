@@ -32,15 +32,6 @@ window.onload = function () {
         update();
     }, 40);
     //dianji
-    canvas.addEventListener('click', function (e) {
-        window.open(' http://www.baidu.com ', '_self');
-    }, false);
-    canvas.addEventListener('mouseover', function (e) {
-        document.getElementById('show').style.display = "block";
-    }, false);
-    canvas.addEventListener('mouseout', function (e) {
-        document.getElementById('show').style.display = "none";
-    }, false);
 }
 
 window.onblur = function () {
