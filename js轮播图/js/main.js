@@ -32,6 +32,8 @@ function right() {
 
 timer = setTimeout(right, 3000);
 
+
+// 指的时候停止滚动
 wrap.addEventListener('mouseover', function () {
     clearTimeout(timer);
 });
@@ -51,8 +53,8 @@ for (var i = 0; i < btns.length; i++) {
         }
         this.className = "on";
         var index = this.getAttribute('data-index');
-        console.log(index);
-        imgsDiv.style.left = -img.offsetWidth * index + 'px';
+        var target= -img.offsetWidth * index ;
+        startMove(imgsDiv,{left:target});
     })
 }
 
@@ -66,7 +68,6 @@ prev.addEventListener('click', function () {
 
     var target = imgsDiv.offsetLeft + img.offsetWidth;
     startMove(imgsDiv,{left:target},function(){
-        console.log(imgsDiv.offsetLeft)
         for (var a of btns) {
             a.className = "";
         }
@@ -86,7 +87,6 @@ next.addEventListener('click', function () {
     
     var target = imgsDiv.offsetLeft - img.offsetWidth;
     startMove(imgsDiv,{left:target},function(){
-        console.log(imgsDiv.offsetLeft)
         for (var a of btns) {
             a.className = "";
         }
