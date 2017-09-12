@@ -1,4 +1,3 @@
-
 var wrap = document.getElementsByClassName('wrap')[0];
 var prev = wrap.getElementsByClassName('prev')[0];
 var next = wrap.getElementsByClassName('next')[0];
@@ -7,40 +6,27 @@ var img = imgsDiv.children[0];
 var btns = document.getElementsByClassName('btn')[0].getElementsByTagName('li');
 
 imgsDiv.style.left = 0 + 'px';
-imgsDiv.style.transition = 'all 0.5s ease-in-out';
 
 // 自动播放
 var timer;
 
 function right() {
     if (imgsDiv.offsetLeft <= -imgsDiv.offsetWidth + img.offsetWidth) {
-        imgsDiv.style.transition = 'none';
         imgsDiv.style.left = 0 + 'px';
     }
-
-    setTimeout(function () {
-        imgsDiv.style.transition = 'all 0.5s ease-in-out';
-        imgsDiv.style.left = imgsDiv.offsetLeft - img.offsetWidth + 'px';
-    }, 10);
-
-    setTimeout(function () {
+    
+    var target = imgsDiv.offsetLeft - img.offsetWidth;
+    startMove(imgsDiv,{left:target},function(){
         console.log(imgsDiv.offsetLeft)
         for (var a of btns) {
             a.className = "";
         }
         var index = (-imgsDiv.offsetLeft) / img.offsetWidth;
-        console.log(index)
         if (index === 4) {
             index = 0;
         }
         btns[index].className = "on";
-    }, 520);
-
-    if (imgsDiv.offsetLeft < -imgsDiv.offsetWidth + img.offsetWidth) {
-        imgsDiv.style.transition = 'none';
-        imgsDiv.style.left = 0 + 'px';
-    }
-
+    });
     timer = setTimeout(right, 3000);
 }
 
@@ -70,49 +56,37 @@ for (var i = 0; i < btns.length; i++) {
     })
 }
 
-// 往左
+// 左按钮
 prev.addEventListener('click', function () {
     prev.disabled = true;
-    console.log(imgsDiv.offsetLeft)
 
     if (imgsDiv.offsetLeft >= 0) {
-        imgsDiv.style.transition = 'none';
         imgsDiv.style.left = -imgsDiv.offsetWidth + img.offsetWidth + 'px';
     }
 
-    setTimeout(function () {
-        imgsDiv.style.transition = 'all 0.5s ease-in-out';
-        imgsDiv.style.left = imgsDiv.offsetLeft + img.offsetWidth + 'px';
-    }, 10);
-
-    setTimeout(function () {
+    var target = imgsDiv.offsetLeft + img.offsetWidth;
+    startMove(imgsDiv,{left:target},function(){
+        console.log(imgsDiv.offsetLeft)
         for (var a of btns) {
             a.className = "";
         }
         var index = (-imgsDiv.offsetLeft) / img.offsetWidth;
         btns[index].className = "on";
-        prev.disabled = false;
-    }, 520);
-
-    //startMove(imgsDiv, { left: imgsDiv.offsetLeft + img.offsetWidth }, function () { prev.disabled = false; });
+        prev.disabled=false;
+    });
 })
 
-// 往右
+// 右按钮
 next.addEventListener('click', function () {
     next.disabled = true;
-    console.log(imgsDiv.offsetLeft)
 
     if (imgsDiv.offsetLeft <= -imgsDiv.offsetWidth + img.offsetWidth) {
-        imgsDiv.style.transition = 'none';
         imgsDiv.style.left = 0 + 'px';
     }
-
-    setTimeout(function () {
-        imgsDiv.style.transition = 'all 0.5s ease-in-out';
-        imgsDiv.style.left = imgsDiv.offsetLeft - img.offsetWidth + 'px';
-    }, 10);
-
-    setTimeout(function () {
+    
+    var target = imgsDiv.offsetLeft - img.offsetWidth;
+    startMove(imgsDiv,{left:target},function(){
+        console.log(imgsDiv.offsetLeft)
         for (var a of btns) {
             a.className = "";
         }
@@ -121,8 +95,7 @@ next.addEventListener('click', function () {
             index = 0;
         }
         btns[index].className = "on";
-        next.disabled = false;
-    }, 520);
-    //startMove(imgsDiv, { left: imgsDiv.offsetLeft - img.offsetWidth }, function () { next.disabled = false; });
+        next.disabled=false;
+    });
 })
 
