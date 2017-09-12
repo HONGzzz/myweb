@@ -1,0 +1,109 @@
+*{
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body{
+    height: 100%;
+    width: 100%;
+}
+
+button{
+    border: 0;
+}
+
+.wrap{
+    width: 300px;
+    height: 412px;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.wrap .prev{
+    position: absolute;
+    left: -50px;
+    top: 170px;
+
+    height: 50px;
+    width: 50px;
+
+    background: #ccc;
+    line-height: 50px;
+    text-align: center;
+    font-size: large;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+}
+
+.wrap .next{
+    position: absolute;
+    right: -50px;
+    top: 170px;
+
+    height: 50px;
+    width: 50px;
+
+    background: #ccc;
+    line-height: 50px;
+    text-align: center;
+    font-size: large;
+    font-weight: bolder;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+}
+
+.wrap .btn{
+    position: absolute;
+    transform: translate(-50%,0);
+    left: 50%;
+    bottom: 15px;
+
+    list-style: none;
+    z-index: 10;
+}
+
+.wrap .btn li{
+    display: inline-block;
+
+    height: 12px;
+    width: 12px;
+    margin: 5px;
+    border-radius: 6px;
+
+    background: #ccc;
+    opacity: 0.7;
+    cursor: pointer;
+    user-select: none;
+}
+
+.wrap .btn li.on{
+    background: #35E4C7;
+}
+
+.wrap .main{
+    height: 100%;
+    overflow: hidden;
+}
+
+.wrap .main .imgs{
+    position: relative;
+    height: 100%;
+    width: 1500px;
+    
+    z-index: 0;
+}
+
+.wrap .main .imgs img{
+    display: block;
+    float: left;
+    
+    width: 300px;
+    height: 412px;
+}
