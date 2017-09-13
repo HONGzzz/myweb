@@ -5,32 +5,38 @@ var imgsDiv = wrap.getElementsByClassName('imgs')[0];
 var img = imgsDiv.children[0];
 var btns = document.getElementsByClassName('btn')[0].getElementsByTagName('li');
 
-imgsDiv.style.left = 0 + 'px';
-
 // 自动播放
 var timer;
 
-function right() {
-    if (imgsDiv.offsetLeft <= -imgsDiv.offsetWidth + img.offsetWidth) {
-        imgsDiv.style.left = 0 + 'px';
+var maxindex = imgsDiv.offsetWidth / img.offsetWidth - 1;
+var index = -imgsDiv.offsetLeft / img.offsetWidth;
+
+// 更新按钮状态
+function updatebutton() {
+    for (var a of btns) {
+        a.className = "";
     }
-    
-    var target = imgsDiv.offsetLeft - img.offsetWidth;
-    startMove(imgsDiv,{left:target},function(){
-        console.log(imgsDiv.offsetLeft)
-        for (var a of btns) {
-            a.className = "";
-        }
-        var index = (-imgsDiv.offsetLeft) / img.offsetWidth;
-        if (index === 4) {
-            index = 0;
-        }
+    if (index === maxindex) {
+        btns[0].className = "on";
+    } else {
         btns[index].className = "on";
-    });
-    timer = setTimeout(right, 3000);
+    }
 }
 
-timer = setTimeout(right, 3000);
+function moveright() {
+    index++;
+    var target = -index * img.offsetWidth;
+    startMove(imgsDiv, { left: target }, function () {
+        if (index === maxindex) {
+            index = 0;
+            imgsDiv.style.left = 0 + 'px';
+        }
+    });
+    updatebutton();
+    timer = setTimeout(moveright, 3000);
+}
+
+timer = setTimeout(moveright, 3000);
 
 
 // 指的时候停止滚动
@@ -39,7 +45,7 @@ wrap.addEventListener('mouseover', function () {
 });
 
 wrap.addEventListener('mouseout', function () {
-    timer = setTimeout(right, 3000);
+    timer = setTimeout(moveright, 3000);
 })
 
 
@@ -53,49 +59,39 @@ for (var i = 0; i < btns.length; i++) {
         }
         this.className = "on";
         var index = this.getAttribute('data-index');
-        var target= -img.offsetWidth * index ;
-        startMove(imgsDiv,{left:target});
+        var target = -img.offsetWidth * index;
+        startMove(imgsDiv, { left: target });
     })
 }
 
 // 左按钮
 prev.addEventListener('click', function () {
-    prev.disabled = true;
-
-    if (imgsDiv.offsetLeft >= 0) {
-        imgsDiv.style.left = -imgsDiv.offsetWidth + img.offsetWidth + 'px';
+    index--;
+    if (index < 0) {
+        index = maxindex;
+        imgsDiv.style.left = -index * img.offsetWidth + 'px';
+        index--;
     }
 
-    var target = imgsDiv.offsetLeft + img.offsetWidth;
-    startMove(imgsDiv,{left:target},function(){
-        for (var a of btns) {
-            a.className = "";
-        }
-        var index = (-imgsDiv.offsetLeft) / img.offsetWidth;
-        btns[index].className = "on";
-        prev.disabled=false;
-    });
+    var target = -index * img.offsetWidth;
+    startMove(imgsDiv, { left: target });
+    updatebutton();
 })
 
 // 右按钮
 next.addEventListener('click', function () {
-    next.disabled = true;
-
-    if (imgsDiv.offsetLeft <= -imgsDiv.offsetWidth + img.offsetWidth) {
-        imgsDiv.style.left = 0 + 'px';
+    index++;
+    if (index > maxindex) {
+        index = maxindex;
     }
-    
-    var target = imgsDiv.offsetLeft - img.offsetWidth;
-    startMove(imgsDiv,{left:target},function(){
-        for (var a of btns) {
-            a.className = "";
-        }
-        var index = (-imgsDiv.offsetLeft) / img.offsetWidth;
-        if (index === 4) {
+
+    var target = -index * img.offsetWidth;
+    startMove(imgsDiv, { left: target }, function () {
+        if (index === maxindex) {
             index = 0;
+            imgsDiv.style.left = 0 + 'px';
         }
-        btns[index].className = "on";
-        next.disabled=false;
     });
+    updatebutton();
 })
 
